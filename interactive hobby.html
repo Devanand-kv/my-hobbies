@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>My Hobbies</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #f7f7f7;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: auto;
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      text-align: center;
+      color: #4CAF50;
+    }
+
+    .tabs {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .tabs button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      background-color: #e0e0e0;
+    }
+
+    .tabs button.active {
+      background-color: #4CAF50;
+      color: white;
+    }
+
+    .hobby {
+      display: none;
+      animation: fadeIn 0.3s ease-in-out;
+    }
+
+    .hobby.active {
+      display: block;
+    }
+
+    .hobby img {
+      width: 100%;
+      max-width: 300px;
+      border-radius: 10px;
+    }
+
+    .hobby p {
+      font-size: 16px;
+    }
+
+    .like-btn {
+      background-color: #ff4081;
+      border: none;
+      color: white;
+      padding: 8px 16px;
+      margin-top: 10px;
+      border-radius: 20px;
+      cursor: pointer;
+    }
+
+    .like-count {
+      margin-left: 10px;
+      font-weight: bold;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>My Interactive Hobbies</h1>
+
+    <div class="tabs">
+      <button onclick="showHobby('drawing')" class="active">🎨 Drawing</button>
+      <button onclick="showHobby('reading')">📚 Reading</button>
+      <button onclick="showHobby('gaming')">🎮 Gaming</button>
+    </div>
+
+    <div id="drawing" class="hobby active">
+      <h2>🎨 Drawing</h2>
+      <img src="https://via.placeholder.com/300x200?text=Drawing" alt="Drawing">
+      <p>I love drawing landscapes, animals, and anime characters.</p>
+      <button class="like-btn" onclick="like('drawing')">Like</button>
+      <span class="like-count" id="like-drawing">0</span>
+    </div>
+
+    <div id="reading" class="hobby">
+      <h2>📚 Reading</h2>
+      <img src="https://via.placeholder.com/300x200?text=Reading" alt="Reading">
+      <p>Reading takes me to new worlds and teaches me new things.</p>
+      <button class="like-btn" onclick="like('reading')">Like</button>
+      <span class="like-count" id="like-reading">0</span>
+    </div>
+
+    <div id="gaming" class="hobby">
+      <h2>🎮 Gaming</h2>
+      <img src="https://via.placeholder.com/300x200?text=Gaming" alt="Gaming">
+      <p>I enjoy strategy and adventure games. Super fun with friends!</p>
+      <button class="like-btn" onclick="like('gaming')">Like</button>
+      <span class="like-count" id="like-gaming">0</span>
+    </div>
+  </div>
+
+  <script>
+    // Show selected hobby section
+    function showHobby(id) {
+      const hobbies = document.querySelectorAll('.hobby');
+      const buttons = document.querySelectorAll('.tabs button');
+
+      hobbies.forEach(hobby => hobby.classList.remove('active'));
+      buttons.forEach(btn => btn.classList.remove('active'));
+
+      document.getElementById(id).classList.add('active');
+      event.target.classList.add('active');
+    }
+
+    // Simple like counter
+    const likes = {
+      drawing: 0,
+      reading: 0,
+      gaming: 0
+    };
+
+    function like(hobbyId) {
+      likes[hobbyId]++;
+      document.getElementById('like-' + hobbyId).innerText = likes[hobbyId];
+    }
+  </script>
+</body>
+</html>
